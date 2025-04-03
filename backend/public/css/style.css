@@ -1,0 +1,10 @@
+.sidebar .site-logo .nav-link {
+    padding: 0 0 0 0.75rem;
+    background: #fff;
+}
+.sidebar .nav-item.site-logo .nav-link:hover {
+    background: #fff;
+}
+.sidebar .site-logo .nav-link img {
+    width: 190px;
+}

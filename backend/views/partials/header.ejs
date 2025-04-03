@@ -1,0 +1,25 @@
+<header id="header" class="header">
+	<div class="content">
+		<a href="/"><img src="/img/logo.png" alt="site logo"></a>
+			<nav>
+				<ul>
+					<li><a href="/about"><%= __('header.about') %></a></li>
+					
+					<% if (userId) { %>
+						<li><a href="/user/dashboard"><%= __('header.my_account') %></a></li>
+						<li><a href="/user/editor"><%= __('header.image_editor') %></a></li>
+					<% }else { %>	
+						<li><a href="/auth/register"><%= __('header.register') %></a></li>
+						<li><a href="/auth/login"><%= __('header.login') %></a></li>
+					<% } %>
+					
+				</ul>
+			</nav>
+			<div class="lang">
+				<ul>
+					<li><button class="language-switch" data-lang="en" title="switch en">en</button></li>
+					<li><button class="language-switch" data-lang="ua" title="укр">ua</button></li>
+				</ul>
+			</div>
+	</div>
+</header>
