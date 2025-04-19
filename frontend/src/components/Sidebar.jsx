@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 const Sidebar = () => {
   const location = useLocation();
-  const [settingsOpen, setSettingsOpen] = useState(false);
 
   const isActive = (path) => {
     return location.pathname === path ? 'active' : '';
