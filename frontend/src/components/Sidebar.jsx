@@ -58,6 +58,37 @@ const Sidebar = () => {
               <span className="sidebar-text">Профіль</span>
             </Link>
           </li>
+          <li className={`nav-item ${isActive('/people')}`}>
+            <Link to="/people" className="nav-link">
+              <span className="sidebar-icon">
+                <svg className="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z" clipRule="evenodd"></path>
+                </svg>
+              </span>
+              <span className="sidebar-text">Люди</span>
+            </Link>
+          </li>
+          <li className={`nav-item ${isActive('/settings')}`}>
+            <Link to="/settings" className="nav-link">
+              <span className="sidebar-icon">
+                <svg className="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z" clipRule="evenodd"></path>
+                </svg>
+              </span>
+              <span className="sidebar-text">Налаштування</span>
+            </Link>
+          </li>
+          <li role="separator" class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
+          <li className={`nav-item ${isActive('/quick-start')}`}>
+            <Link to="/quick-start" className="nav-link">
+              <span className="sidebar-icon">
+                <svg className="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z" clipRule="evenodd"></path>
+                </svg>
+              </span>
+              <span className="sidebar-text">Справка</span>
+            </Link>
+          </li>
         </ul>
       </div>
     </nav>
