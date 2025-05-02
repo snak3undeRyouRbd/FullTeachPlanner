@@ -132,4 +132,33 @@ def add_event_comment(event_id):
     db.session.add(comment)
     db.session.commit()
     return jsonify(comment.to_dict()), 201
+import os
+from flask import request, jsonify, send_from_directory, current_app
+from werkzeug.utils import secure_filename
+from app.models.event_attachment import EventAttachment
+
+UPLOAD_FOLDER = 'app/static/uploads'
+
+@main.route('/api/events/<int:event_id>/attachments', methods=['POST'])
+def upload_attachment(event_id):
+    file = request.files.get('file')
+    if not file:
+        return jsonify({'error': 'No file provided'}), 400
+
+    filename = secure_filename(file.filename)
+    file_path = os.path.join(UPLOAD_FOLDER, filename)
+    os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+    file.save(file_path)
+
+    attachment = EventAttachment(event_id=event_id, filename=filename, url=f'/static/uploads/{filename}')
+    db.session.add(attachment)
+    db.session.commit()
+    return jsonify(attachment.to_dict()), 201
+
+
+@main.route('/api/events/<int:event_id>/attachments', methods=['GET'])
+def get_attachments(event_id):
+    attachments = EventAttachment.query.filter_by(event_id=event_id).all()
+    return jsonify([a.to_dict() for a in attachments])
+
 
