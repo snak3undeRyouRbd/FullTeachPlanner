@@ -107,3 +107,29 @@ def respond_to_invite():
     invite.invite_status = response
     db.session.commit()
     return jsonify({'message': 'Response recorded'})
+from app.models.event_comment import EventComment
+
+@main.route('/api/events/<int:event_id>/comments', methods=['GET'])
+def get_event_comments(event_id):
+    comments = EventComment.query.filter_by(event_id=event_id).order_by(EventComment.created_at.asc()).all()
+    return jsonify([c.to_dict() for c in comments])
+
+
+@main.route('/api/events/<int:event_id>/comments', methods=['POST'])
+def add_event_comment(event_id):
+    data = request.get_json()
+    user_id = data.get('user_id')
+    text = data.get('text')
+
+    if not user_id or not text:
+        return jsonify({'error': 'Missing user_id or text'}), 400
+
+    comment = EventComment(
+        event_id=event_id,
+        user_id=user_id,
+        text=text
+    )
+    db.session.add(comment)
+    db.session.commit()
+    return jsonify(comment.to_dict()), 201
+
