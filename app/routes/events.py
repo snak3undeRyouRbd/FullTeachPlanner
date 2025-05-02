@@ -3,6 +3,12 @@ from app import db
 from app.models.event import Event
 from app.models.user import User
 from app.routes import main
+from app.models.event_comment import EventComment
+from app import db, socketio  # <--- добавляем socketio
+import os
+from flask import request, jsonify, send_from_directory, current_app
+from werkzeug.utils import secure_filename
+from app.models.event_attachment import EventAttachment
 
 @main.route('/api/events', methods=['POST'])
 def create_event():
@@ -131,11 +137,13 @@ def add_event_comment(event_id):
     )
     db.session.add(comment)
     db.session.commit()
+
+    # Отправляем уведомление всем клиентам
+    socketio.emit('new_comment', comment.to_dict(), broadcast=True)
+
     return jsonify(comment.to_dict()), 201
-import os
-from flask import request, jsonify, send_from_directory, current_app
-from werkzeug.utils import secure_filename
-from app.models.event_attachment import EventAttachment
+
+
 
 UPLOAD_FOLDER = 'app/static/uploads'
 
