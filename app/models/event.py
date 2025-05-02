@@ -18,3 +18,4 @@ class Event(db.Model):
 
     def to_dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+attachments = db.Column(db.Text)  # список ссылок через JSON или разделитель
