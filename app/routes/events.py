@@ -48,3 +48,62 @@ def get_events():
         result.append(data)
 
     return jsonify(result)
+from datetime import datetime
+
+@main.route('/api/events/filter', methods=['GET'])
+def filter_events():
+    user_id = request.args.get('user_id', type=int)
+    viewer_id = request.args.get('viewer_id', type=int)
+    status = request.args.get('status')  # accepted, declined, pending
+    past = request.args.get('past')  # true / false
+
+    if not user_id:
+        return jsonify({'error': 'Missing user_id'}), 400
+
+    now = datetime.utcnow()
+    query = Event.query.filter_by(creator_id=user_id)
+
+    if past == 'true':
+        query = query.filter(Event.start_date < now)
+    elif past == 'false':
+        query = query.filter(Event.start_date >= now)
+
+    events = query.all()
+    result = []
+
+    for event in events:
+        data = event.to_dict()
+
+        # скрыть контент до начала события
+        if event.start_date > now:
+            data['content'] = None
+
+        # скрываем поля для чужого календаря
+        if viewer_id and viewer_id != event.creator_id:
+            data.pop('location', None)
+
+        # фильтрация по статусу приглашения (если viewer_id указан)
+        if status and viewer_id:
+            invite = EventInvite.query.filter_by(
+                event_id=event.id,
+                invitee_id=viewer_id
+            ).first()
+            if not invite or invite.invite_status != status:
+                continue  # фильтр не совпал
+
+        result.append(data)
+
+    return jsonify(result)
+@main.route('/api/events/respond', methods=['POST'])
+def respond_to_invite():
+    data = request.get_json()
+    invite_id = data.get('invite_id')
+    response = data.get('status')  # accepted, declined, canceled
+
+    invite = EventInvite.query.get(invite_id)
+    if not invite:
+        return jsonify({'error': 'Invite not found'}), 404
+
+    invite.invite_status = response
+    db.session.commit()
+    return jsonify({'message': 'Response recorded'})
