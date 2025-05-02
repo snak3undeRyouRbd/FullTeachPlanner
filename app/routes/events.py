@@ -27,5 +27,24 @@ def create_event():
 
 @main.route('/api/events', methods=['GET'])
 def get_events():
-    events = Event.query.all()
-    return jsonify([event.to_dict() for event in events])
+    user_id = request.args.get('user_id', type=int)       # чей календарь
+    viewer_id = request.args.get('viewer_id', type=int)   # кто просматривает
+
+    query = Event.query
+    if user_id:
+        query = query.filter_by(creator_id=user_id)
+
+    events = query.all()
+    result = []
+
+    for event in events:
+        data = event.to_dict()
+
+        # если просматривает не создатель — скрываем контент и локацию
+        if viewer_id and viewer_id != event.creator_id:
+            data.pop('content', None)
+            data.pop('location', None)
+
+        result.append(data)
+
+    return jsonify(result)
