@@ -23,3 +23,20 @@ def create_task():
     db.session.add(task)
     db.session.commit()
     return jsonify(task.to_dict()), 201
+from datetime import date
+
+@main.route('/api/tasks/today', methods=['GET'])
+def get_today_tasks():
+    user_id = request.args.get('user_id', type=int)
+    if not user_id or not User.query.get(user_id):
+        return jsonify({'error': 'Invalid user_id'}), 400
+
+    today_str = date.today().isoformat()
+
+    tasks = Task.query.filter(
+        Task.assigned_to == user_id,
+        Task.due_date.startswith(today_str)
+    ).all()
+
+    return jsonify([task.to_dict() for task in tasks])
+
