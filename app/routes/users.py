@@ -66,3 +66,31 @@ def search_users():
 
     users = query.all()
     return jsonify([user.to_dict() for user in users])
+@main.route('/api/users/<int:user_id>', methods=['PATCH'])
+def update_user(user_id):
+    user = User.query.get(user_id)
+    if not user:
+        return jsonify({'error': 'User not found'}), 404
+
+    data = request.get_json()
+
+    # Обновляем только те поля, которые есть в запросе
+    if 'name' in data:
+        user.name = data['name']
+    if 'surname' in data:
+        user.surname = data['surname']
+    if 'email' in data:
+        existing = User.query.filter_by(email=data['email']).first()
+        if existing and existing.id != user.id:
+            return jsonify({'error': 'Email already in use'}), 400
+        user.email = data['email']
+    if 'profile_photo' in data:
+        user.profile_photo = data['profile_photo']
+    if 'additional_info' in data:
+        user.additional_info = data['additional_info']
+    if 'birthday' in data:
+        user.birthday = data['birthday']
+
+    db.session.commit()
+    return jsonify(user.to_dict())
+
