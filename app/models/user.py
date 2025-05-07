@@ -13,6 +13,8 @@ class User(db.Model):
     additional_info = db.Column(db.Text)
     profile_photo = db.Column(db.String(255))
     badge = db.Column(db.String(255))
+    class_id = db.Column(db.Integer, db.ForeignKey('school_class.id'))
+
 
     # связи
     events = db.relationship('Event', backref='creator', lazy=True)
