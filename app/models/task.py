@@ -10,6 +10,7 @@ class Task(db.Model):
     due_date = db.Column(db.DateTime)
     event_id = db.Column(db.Integer, db.ForeignKey('event.id', ondelete='SET NULL'))
     assigned_to = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='SET NULL'))
+    created_by = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def to_dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
