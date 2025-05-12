@@ -1,0 +1,42 @@
+{
+  "user": {
+    "id": 1,
+    "name": "Іван Петренко",
+    "email": "ivan@example.com",
+    "role": "учень",
+    "class": "8-А",
+    "profile_photo": "/img/team/profile-picture-3.jpg",
+    "birthday": "2010-03-14",
+    "data_visited": "2025-05-01",
+    "joined_at": "2023-09-01"
+  },
+  "users": [
+    {
+      "id": 1,
+      "name": "Іван Петренко",
+      "email": "ivan@example.com",
+      "role": "учень",
+      "class": "8-А"
+    },
+    {
+      "id": 2,
+      "name": "Олена Іваненко",
+      "email": "teacher@example.com",
+      "role": "вчитель",
+      "class": null
+    }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "title": "Контрольна з математики",
+      "start_date": "2025-05-10T09:00:00",
+      "duration": 60,
+      "location": "Кабінет 305",
+      "creator_id": 2
+    }
+  ],
+  "tasks": [
+    {
+      "id": 1,
+      "title":
