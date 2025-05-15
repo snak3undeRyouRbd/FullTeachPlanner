@@ -4,7 +4,10 @@ const Sidebar = () => {
   const location = useLocation();
 
   const isActive = (path) => {
-    return location.pathname === path ? 'active' : '';
+    if (path === '/') {
+        return location.pathname === '/' ? 'active' : '';
+    }
+    return location.pathname.startsWith(path) ? 'active' : '';
   };
 
   return (
@@ -24,7 +27,7 @@ const Sidebar = () => {
                   <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
                 </svg>
               </span>
-              <span className="sidebar-text">Мій кабінет</span>
+              <span className="sidebar-text">Мій календар</span>
             </Link>
           </li>
           <li className={`nav-item ${isActive('/events')}`}>
@@ -35,6 +38,16 @@ const Sidebar = () => {
                 </svg>
               </span>
               <span className="sidebar-text">Події</span>
+            </Link>
+          </li>
+          <li className={`nav-item ${isActive('/invites')}`}>
+            <Link to="/invites" className="nav-link">
+              <span className="sidebar-icon">
+                <svg className="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
+                </svg>
+              </span>
+              <span className="sidebar-text">Запрошення</span>
             </Link>
           </li>
           <li className={`nav-item ${isActive('/tasks')}`}>
@@ -72,21 +85,20 @@ const Sidebar = () => {
             <Link to="/settings" className="nav-link">
               <span className="sidebar-icon">
                 <svg className="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z" clipRule="evenodd"></path>
-                </svg>
+                <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>                </svg>
               </span>
               <span className="sidebar-text">Налаштування</span>
             </Link>
           </li>
-          <li role="separator" class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
-          <li className={`nav-item ${isActive('/quick-start')}`}>
-            <Link to="/quick-start" className="nav-link">
+          <li role="separator" className="dropdown-divider mt-4 mb-3 border-gray-700"></li>
+          <li className={`nav-item ${isActive('/qa')}`}>
+            <Link to="/qa" className="nav-link">
               <span className="sidebar-icon">
                 <svg className="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z" clipRule="evenodd"></path>
                 </svg>
               </span>
-              <span className="sidebar-text">Справка</span>
+              <span className="sidebar-text">Довідка</span>
             </Link>
           </li>
         </ul>

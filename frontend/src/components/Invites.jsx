@@ -35,7 +35,7 @@ const Invites = () => {
       <div className="card border-0 shadow">
         <div className="card-header border-bottom d-flex align-items-center justify-content-between">
           <h2 className="fs-5 fw-bold mb-0">Запрошення</h2>
-          <a href="#" className="btn btn-sm btn-primary">Дивитись усі</a>
+          <a href="/invites" className="btn btn-sm btn-primary">Дивитись усі</a>
         </div>
         <div className="card-body">
           <ul className="list-group list-group-flush list my--3">

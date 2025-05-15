@@ -5,7 +5,7 @@
     "email": "user1@example.com",
     "role": "учень",
     "class": "8-A",
-    "profile_photo": "/images/avatar1.png",
+    "profile_photo": "/img/team/profile-picture-3.jpg",
     "birthday": "2012-01-07",
     "data_visited": "2025-04-07 00:00:00",
     "joined_at": "2023-04-08"
@@ -17,7 +17,7 @@
       "email": "user1@example.com",
       "role": "учень",
       "class": "8-A",
-      "profile_photo": "/images/avatar1.png",
+      "profile_photo": "/img/avatar.webp",
       "birthday": "2012-01-07",
       "data_visited": "2025-04-07 00:00:00",
       "joined_at": "2023-04-08"
@@ -28,7 +28,7 @@
       "email": "user2@example.com",
       "role": "вчитель",
       "class": "11-B",
-      "profile_photo": "/images/avatar2.png",
+      "profile_photo": "/img/avatar.webp",
       "birthday": "2014-03-02",
       "data_visited": "2025-04-12 00:00:00",
       "joined_at": "2023-11-17"
@@ -38,8 +38,8 @@
       "name": "Андрій Шевченко",
       "email": "user3@example.com",
       "role": "учень",
-      "class": "6-C",
-      "profile_photo": "/images/avatar3.png",
+      "class": "8-B",
+      "profile_photo": "/img/avatar.webp",
       "birthday": "2013-05-02",
       "data_visited": "2025-04-25 00:00:00",
       "joined_at": "2023-08-08"
@@ -49,8 +49,8 @@
       "name": "Марія Іваненко",
       "email": "user4@example.com",
       "role": "вчитель",
-      "class": "9-A",
-      "profile_photo": "/images/avatar4.png",
+      "class": "8-B",
+      "profile_photo": "/img/avatar.webp",
       "birthday": "2011-01-04",
       "data_visited": "2025-04-26 00:00:00",
       "joined_at": "2023-03-08"
@@ -61,7 +61,7 @@
       "email": "user5@example.com",
       "role": "учень",
       "class": "8-B",
-      "profile_photo": "/images/avatar5.png",
+      "profile_photo": "/img/avatar.webp",
       "birthday": "2011-05-06",
       "data_visited": "2025-04-25 00:00:00",
       "joined_at": "2023-01-15"
@@ -72,7 +72,7 @@
       "email": "user6@example.com",
       "role": "вчитель",
       "class": "5-C",
-      "profile_photo": "/images/avatar6.png",
+      "profile_photo": "/img/avatar.webp",
       "birthday": "2011-09-04",
       "data_visited": "2025-04-09 00:00:00",
       "joined_at": "2023-06-17"
@@ -82,8 +82,8 @@
       "name": "Олександр Кузьменко",
       "email": "user7@example.com",
       "role": "учень",
-      "class": "10-A",
-      "profile_photo": "/images/avatar7.png",
+      "class": "10-C",
+      "profile_photo": "/img/avatar.webp",
       "birthday": "2014-09-03",
       "data_visited": "2025-04-21 00:00:00",
       "joined_at": "2023-03-04"
@@ -93,8 +93,8 @@
       "name": "Тетяна Литвин",
       "email": "user8@example.com",
       "role": "вчитель",
-      "class": "10-B",
-      "profile_photo": "/images/avatar8.png",
+      "class": "10-C",
+      "profile_photo": "/img/avatar.webp",
       "birthday": "2011-07-01",
       "data_visited": "2025-04-23 00:00:00",
       "joined_at": "2023-05-03"
@@ -105,7 +105,7 @@
       "email": "user9@example.com",
       "role": "учень",
       "class": "10-C",
-      "profile_photo": "/images/avatar9.png",
+      "profile_photo": "/img/avatar.webp",
       "birthday": "2015-07-01",
       "data_visited": "2025-04-04 00:00:00",
       "joined_at": "2023-02-03"
@@ -116,7 +116,7 @@
       "email": "user10@example.com",
       "role": "вчитель",
       "class": "5-A",
-      "profile_photo": "/images/avatar10.png",
+      "profile_photo": "/img/avatar.webp",
       "birthday": "2013-01-08",
       "data_visited": "2025-04-11 00:00:00",
       "joined_at": "2023-12-10"
