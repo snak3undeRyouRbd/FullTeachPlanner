@@ -1,13 +1,18 @@
-@main.route('/api/events/respond', methods=['POST'])
-def respond_to_invite():
-    data = request.get_json()
-    invite_id = data.get('invite_id')
-    response = data.get('status')  # accepted, declined, canceled
+from app import db
+from datetime import datetime
 
-    invite = EventInvite.query.get(invite_id)
-    if not invite:
-        return jsonify({'error': 'Invite not found'}), 404
+class EventComment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    event_id = db.Column(db.Integer, db.ForeignKey('event.id', ondelete='CASCADE'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'))
+    content = db.Column(db.Text, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
-    invite.invite_status = response
-    db.session.commit()
-    return jsonify({'message': 'Response recorded'})
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "event_id": self.event_id,
+            "user_id": self.user_id,
+            "content": self.content,
+            "created_at": self.created_at.isoformat()
+        }
