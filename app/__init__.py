@@ -1,34 +1,23 @@
-import os
 from flask import Flask
-from flask_cors import CORS
-from flask_socketio import SocketIO
-from config import Config
-from app.extensions import db
+from app.extensions import db, login_manager
+from app.models import User
+from app.routes import auth_bp, protected_bp
 
-socketio = SocketIO(cors_allowed_origins="*")
-
-def create_app():
-    app = Flask(
-        __name__,
-        static_folder=os.path.join(os.path.dirname(__file__), "static", "frontend", "dist"),
-        static_url_path=''
-    )
-    app.config.from_object(Config)
+def create_app(config_object="config.Config"):
+    app = Flask(__name__)
+    app.config.from_object(config_object)
 
     db.init_app(app)
-    socketio.init_app(app)
-    CORS(app)
+    login_manager.init_app(app)
 
-    from app import models
-    from app.routes import register_routes
-    register_routes(app)
-    print("✅ auth_bp registered")
+    @login_manager.user_loader
+    def load_user(user_id: str):
+        return db.session.get(User, int(user_id))
+
+    app.register_blueprint(auth_bp, url_prefix="/auth")
+    app.register_blueprint(protected_bp, url_prefix="")
 
     with app.app_context():
-        from app.models.schoolclass import SchoolClass
-        print("✅ SchoolClass is visible")
         db.create_all()
 
     return app
-
-
